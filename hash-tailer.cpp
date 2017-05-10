@@ -25,6 +25,8 @@ typedef  uint8_t   ub1;
 uint64 resA;
 uint64 resB;
 
+constexpr int PAGESIZE = 4096;
+
 /** Return current time in usec */
 ub8 usec()
 {
@@ -229,9 +231,9 @@ static inline void tailer_mz16(ub1* message, size_t len)
     return;
   }
 
-  if ( ((ub8)(message + 15))& (4096 - 15))
+  if ( ((ub8)(message + 15)) & (PAGESIZE - 16))
   {
-    // Common case
+    // Common case - a bit simpler code
     // Reading after the address is fine
     ub1 *ptr = message;
     if (len <= 8)
@@ -281,22 +283,22 @@ static inline void tailer_mz8(ub1* message, size_t len)
     return;
   }
 
-  if ( ((ub8)(message + 7))& (4096 - 7))
+  if ( ((ub8)(message )) & (PAGESIZE - 8))
   {
-    // Common case
-    // Reading "junk" after the data is fine
-    pr("c\n");
-    ub1 *ptr = message;
-    resA = (*((ub8 *) (ptr))) & ((~0ULL) >> (8 * (8 - len)));
+    // Common case - a bit simpler code
+    // Reading "junk" before the pointer is OK.
+
+    ub1 *ptr = message - (8 - len);
+    pr("a\n");
+    resA = (*((ub8*)(ptr))) >> (8 * (8 - len));
   }
   else
   {
     // Rare case
-    // Can cross the page boundary, need to read from before the pointer
-    // (that is guaranteed to be fine ;))
-    ub1 *ptr = message - (8 - len);
-    pr("a\n");
-    resA = (*((ub8*)(ptr))) >> (8 * (8 - len));
+    // Beginning o f the page, need to read after the pointer
+    pr("c\n");
+    ub1 *ptr = message;
+    resA = (*((ub8 *) (ptr))) & ((~0ULL) >> (8 * (8 - len)));
   }
 }
 
@@ -304,7 +306,6 @@ static inline void tailer_mz8(ub1* message, size_t len)
 
 
 
-constexpr int PAGESIZE = 4096;
 /** Our data buffer */
 ub1 buf[PAGESIZE + 16];
 

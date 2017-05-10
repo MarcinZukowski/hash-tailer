@@ -56,16 +56,16 @@ cmake . && make && ./hash-tailer
 ~~~~
 Testing 16-byte correctness...OK
 
-0..15 bytes, best of 10 reps: SPOOKY: 112018 us, 11.202 ns avg   VS    MZ16:  49574 us,  4.957 ns avg,  2.260x faster
-0.. 7 bytes, best of 10 reps: SPOOKY: 103978 us, 10.398 ns avg   VS    MZ16:  28925 us,  2.892 ns avg,  3.595x faster
-0.. 3 bytes, best of 10 reps: SPOOKY:  92090 us,  9.209 ns avg   VS    MZ16:  36545 us,  3.655 ns avg,  2.520x faster
-0.. 1 bytes, best of 10 reps: SPOOKY:  69080 us,  6.908 ns avg   VS    MZ16:  49085 us,  4.909 ns avg,  1.407x faster
+0..15 bytes, best of 10 reps: SPOOKY: 111368 us, 11.137 ns avg   VS    MZ16:  51135 us,  5.114 ns avg,  2.178x faster
+0.. 7 bytes, best of 10 reps: SPOOKY: 103541 us, 10.354 ns avg   VS    MZ16:  28566 us,  2.857 ns avg,  3.625x faster
+0.. 3 bytes, best of 10 reps: SPOOKY:  90679 us,  9.068 ns avg   VS    MZ16:  34870 us,  3.487 ns avg,  2.600x faster
+0.. 1 bytes, best of 10 reps: SPOOKY:  67563 us,  6.756 ns avg   VS    MZ16:  48039 us,  4.804 ns avg,  1.406x faster
 
 Testing 8-byte correctness...OK
 
-0.. 7 bytes, best of 10 reps:   T1HA:  97800 us,  9.780 ns avg   VS     MZ8:  34489 us,  3.449 ns avg,  2.836x faster
-0.. 3 bytes, best of 10 reps:   T1HA:  81647 us,  8.165 ns avg   VS     MZ8:  46616 us,  4.662 ns avg,  1.751x faster
-0.. 1 bytes, best of 10 reps:   T1HA:  48696 us,  4.870 ns avg   VS     MZ8:  57028 us,  5.703 ns avg,  0.854x faster
+0.. 7 bytes, best of 10 reps:   T1HA:  99436 us,  9.944 ns avg   VS     MZ8:  31074 us,  3.107 ns avg,  3.200x faster
+0.. 3 bytes, best of 10 reps:   T1HA:  81821 us,  8.182 ns avg   VS     MZ8:  41898 us,  4.190 ns avg,  1.953x faster
+0.. 1 bytes, best of 10 reps:   T1HA:  51191 us,  5.119 ns avg   VS     MZ8:  56325 us,  5.633 ns avg,  0.909x faster
 ~~~~
 
 Looks promising.
