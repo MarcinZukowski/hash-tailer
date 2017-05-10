@@ -1,0 +1,12 @@
+.idea
+
+hash-tailer
+hash-tailer.cbp
+*.o
+*~
+
+cmake-build-*
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+Makefile
