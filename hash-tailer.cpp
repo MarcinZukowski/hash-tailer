@@ -373,7 +373,7 @@ void test_performance(Func1 func1, const char *name1, Func2 func2, const char *n
     exit(1);
   }
 
-  printf("PERF(up to %2d bytes, best of %d reps): %6s: %7lld us, %6.3f ns avg   VS  %6s: %7lld us, %6.3f ns avg , %6.3fx faster\n",
+  printf("0..%2d bytes, best of %d reps: %6s: %6lld us, %6.3f ns avg   VS  %6s: %6lld us, %6.3f ns avg, %6.3fx faster\n",
          bytes - 1, 2 * REPS,
          name1, time1, 1000.0f * time1 / PRUNS,
          name2, time2, 1000.0f * time2 / PRUNS,
