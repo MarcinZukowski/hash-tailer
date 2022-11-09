@@ -42,6 +42,32 @@ we detect we're close to the page boundary, we can do it.
 
 So I implemented a 16- and 8- byte version of this code, just for fun.
 
+Here's an example for the 8-byte version:
+
+~~~~
+/** Read up to 8 bytes, save the content in resA */
+static inline void tailer_mz8(ub1* message, size_t len)
+{
+  if (len == 0) {
+    resA = 0;
+    return;
+  }
+
+  if ( ((ub8)(message)) & (PAGESIZE - 8)) {
+    // Common case, not at the beginning of the page.
+    // Reading "junk" before the pointer is OK.
+    //  A bit simpler code
+
+    ub1 *ptr = message - (8 - len);
+    resA = (*((ub8*)(ptr))) >> (8 * (8 - len));
+  } else {
+    // Rare case
+    // Beginning of the page, need to read after the pointer and mask
+    ub1 *ptr = message;
+    resA = (*((ub8 *) (ptr))) & ((~0ULL) >> (8 * (8 - len)));
+  }
+}
+~~~~
 
 ### Installation
 
